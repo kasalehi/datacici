@@ -2,7 +2,7 @@ import requests
 import pandas as pd 
 import datetime
 
-logfile='log.txt'
+logfile='log_file.txt'
 def log_msg(masg):
      with open(logfile, 'a') as f:
         f.write(f'{datetime.datetime.now()} - {masg} \n')
@@ -22,7 +22,7 @@ try:
     df['etl_timestamp'] = etl_timestamp
 #lets save tocsv 
      # Load
-    df.to_csv('key.csv', index=False)
+    df.to_csv('key1.csv', index=False)
     log_msg(f'ETL job completed at {etl_timestamp} and data saved to transformed_data.csv')
 
 except Exception as e:
