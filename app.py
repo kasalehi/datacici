@@ -6,7 +6,7 @@ import datetime
 # lets create log function to record all running 
 def log_key(msag):
      with open('log.txt','a') as f:
-         f.write(f"the masg succesfuily write in {datetime.datetime.now()}-{msag}")
+         f.write(f"the masg succesfuily write in {datetime.datetime.now()} - {msag}")
         
         
 # lets rad data form url link
