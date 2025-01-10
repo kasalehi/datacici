@@ -19,7 +19,7 @@ try :
     df=pd.DataFrame(data)
     # lets print data frame
     df.to_csv('key.csv',index=False)
-    
+    log_key(f'data succesfuly read from url at {datetime.datetime.now()}')
 except Exception as e:
     log_key(f"error {e}")
     print(f"error {e}")
