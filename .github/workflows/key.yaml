@@ -1,19 +1,25 @@
-name: key yamal file
+name: run app
 
-on: 
-   push:
-     branches:
-       - master 
-       - main
-jobs: 
-  Build and Deploy:
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  run-app:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Setup pyhton environment
-        uses: actions/setup-node@v2
-          with:
-             pyhton-version: 3.9
+      
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      
       - name: Install dependencies
-        run: pip install pandas numpy requests datetime 
+        run: pip install pandas requests datetime
+      
+      - name: Run app
+        run: python app.py
