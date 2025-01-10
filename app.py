@@ -4,8 +4,9 @@ import numpy as np
 import datetime 
 
 # lets create log function to record all running 
+log_file='log.txt'
 def log_key(msag):
-     with open('log.txt','a') as f:
+     with open(log_file,'a') as f:
          f.write(f"the masg succesfuily write in {datetime.datetime.now()} - {msag}")
         
         
