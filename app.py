@@ -1,28 +1,30 @@
-import requests 
+import requests
 import pandas as pd 
-import numpy as np
-import datetime 
+import datetime
 
-# lets create log function to record all running 
-log_file='log.txt'
-def log_key(msag):
-     with open(log_file,'a') as f:
-         f.write(f"the masg succesfuily write in {datetime.datetime.now()} - {msag}")
-        
-        
-# lets rad data form url link
+logfile='log.txt'
+def log_msg(masg):
+     with open(logfile, 'a') as f:
+        f.write(f'{datetime.datetime.now()} - {masg} \n')
+    
+#lets read csv file form api
+try: 
+    response = requests.get('https://jsonplaceholder.typicode.com/posts')
+    data = response.json()
 
+    # Convert to DataFrame
+    df = pd.DataFrame(data)
 
+    # Transform
+    df['title_length'] = df['title'].apply(len)
+    df['body_length'] = df['body'].apply(len)
+    etl_timestamp = datetime.datetime.now()
+    df['etl_timestamp'] = etl_timestamp
+#lets save tocsv 
+     # Load
+    df.to_csv('key.csv', index=False)
+    log_msg(f'ETL job completed at {etl_timestamp} and data saved to transformed_data.csv')
 
-try :
-     response=requests.get('https://jsonplaceholder.typicode.com/posts')
-     data=response.json()
-     # lets create data frame from json data
-     df=pd.DataFrame(data)
-     # lets print data frame
-     df.to_csv('key.csv',index=False)
-     log_key(f'data succesfuly read from url at {datetime.datetime.now()}')
 except Exception as e:
-     log_key(f"error {e}")
-     print(f"error {e}")
+     log_msg(f"Error {e} at {datetime.datetime.now()}")
     
