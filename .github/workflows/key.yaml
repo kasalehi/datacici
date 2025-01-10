@@ -2,17 +2,18 @@ name: key yamal file
 
 on: 
    push:
-     - master 
-     - main
+     branches:
+       - master 
+       - main
 jobs: 
-   name: Build and Deploy
-       runs-on: ubuntu-latest
-       steps:
-         - name: Checkout code
-           uses: actions/checkout@v2
-         - name: Setup pyhton environment
-           uses: actions/setup-node@v2
-              with:
-               pyhton-version: 3.9
-         - name: Install dependencies
-            run: pip install pandas numpy requests datetime 
+  Build and Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup pyhton environment
+        uses: actions/setup-node@v2
+          with:
+             pyhton-version: 3.9
+      - name: Install dependencies
+        run: pip install pandas numpy requests datetime 
